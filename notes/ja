@@ -1,0 +1,33 @@
+
+javascript
+:
+   js doesnt support the "A"-"B" it will give the NAN   and NAN +"string" will give  NANstring 
+
+datatypes>>
+
+
+	typeof "John Doe" // Returns "string"
+	typeof 3.14 // Returns "number"
+	typeof true // Returns "boolean"
+	typeof 234567890123456789012345678901234567890n // Returns bigint
+	typeof undefined // Returns "undefined"
+	typeof null // Returns "object" (kind of a bug in JavaScript)
+	typeof Symbol('symbol') // Returns Symbol
+
+  null >>>It represents a non-existent or a invalid value.
+  undefined >>> When a variable is declared but not assigned, it has the value of undefined and it’s type is also undefined. 
+  not defined >>> while "not defined" indicates that a variable does not exist.
+
+    It is important to remember that any data type that is not a primitive data type, is of Object type in javascript.
+
+
+
+Hoisting :-
+
+	Hoisting is the default behaviour of javascript where all the variable and function declarations are moved on top.
+
+	This means that irrespective of where the variables and functions are declared, they are moved on top of the scope. 
+	The scope can be both local and global.
+
+
+

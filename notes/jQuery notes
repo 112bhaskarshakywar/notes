@@ -1,0 +1,452 @@
+	jQuery notes
+
+	we can add j query in html file with script tag written in head of html file 
+		u can add with cdn link or elese u can download that 
+		the cdn one will be effective because it avoid the loading of  
+		syntaxes on time of loading and use the chached version of  
+		jquery file downloaded by other website used by user
+
+	cdn >>
+		<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+		</head>
+
+	downloading>>
+		<head>
+	       <script src="jquery-3.6.3.min.js"></script>
+		</head>
+
+	 jquery is just javascript short syntax for selecting dom elements and working on them (or dom manuplation)
+	 
+	 
+	 
+	 
+	 
+	 uses >>
+	 	Basic syntax is: $(selector).action()
+	 	
+	 	here selectors we are using as same as css
+	 	
+		$(this).hide() - hides the current element.
+		$("p").hide() - hides all <p> elements.
+		$(".test").hide() - hides all elements with class="test".
+		$("#test").hide() - hides the element with id="test".
+		
+		
+		
+		so first of all  on loading we will check if document is loaded if not then we should do 						
+		like
+		$(document).ready(function(){
+	      	 // jQuery methods go here...
+		});
+		
+		
+		$(function(){
+	  	   // this is same as above just it is a short hand property
+		});
+		
+		
+	EVENETS 
+		 are same as js and just need 
+		 
+		 $("#p1").mouseenter(function(){
+		  alert("You entered p1!");
+		});
+
+		$("p").dblclick(function(){
+		  $(this).hide();   				// this will hide the element which is  
+		  			    		touched and here elemente called is paragraph
+		});
+
+
+
+
+		$("#p1").mouseleave(function(){
+		  alert("Bye! You now leave p1!");
+		});
+
+
+	you can change css of this by .css 
+	 like
+	 
+		 
+		 $("p").on({
+		  mouseenter: function(){
+		    $(this).css("background-color", "lightgray");
+		  },
+		  mouseleave: function(){
+		    $(this).css("background-color", "lightblue");
+		  },
+		  click: function(){
+		    $(this).css("background-color", "yellow");
+		  }
+		});
+		
+		
+		
+		
+		
+	hiding and showing of the particular element in dom  with soime events 
+		$("#hide").click(function(){
+		  $("p").hide();
+		});
+
+		$("#show").click(function(){
+		  $("p").show();
+		});
+		
+		
+	for toggle
+		$("button").click(function(){
+		  $("p").toggle();
+		});
+		
+		
+	for fading some elent on some evenets
+		 $("button").click(function(){
+		  $("#div1").fadeIn();
+		  $("#div2").fadeIn("slow");
+		  $("#div3").fadeIn(3000);
+		});
+		
+		
+		fadeIn()
+		fadeOut()
+		fadeToggle()
+	  		        all methods are having take same parameter as above
+	  		        
+		fadeTo("slow",0to1)    		0 is white and 1 is colored
+		
+		
+		
+	 for sliding some elements first they are not visible    but in the css of that place we must need to ADD display none 
+		 slideDown()
+		slideUp()
+		slideToggle()
+		
+		
+		
+		
+		
+	Animation >>
+
+	 $(selector).animate({params},speed,callback);
+	 
+		$("button").click(function(){
+		  var div = $("div");
+		  div.animate({height: '300px', opacity: '0.4',left:'200px'}, "slow");
+		  div.animate({width: '300px', opacity: '0.8'}, "slow");
+		  div.animate({height: '100px', opacity: '0.4'}, "slow");
+		  div.animate({width: '100px', opacity: '0.8'}, "slow");
+		}); 
+		
+		
+	stoping animation >>
+
+
+
+		 $(selector).stop(stopAll,goToEnd);
+		 
+		 $("#stop").click(function(){
+		    $("#panel").stop();
+		  });
+
+
+	call back  function  would be used when ever an event is called and we will do here some functionallity
+
+		$("button").click(function(){
+		  $("p").hide("slow", function(){
+		    alert("The paragraph is now hidden");
+		  });
+		});
+	        JavaScript statements are executed line by line. However, with effects, the next line 
+		of code can be run even though the effect is no
+	 	finished. This can create errors.
+
+		To prevent this, you can create a callback function.
+
+		A callback function is executed after the current effect is finished.
+
+		Typical syntax: $(selector).hide(speed,callback);	
+
+
+
+	Until now we have been writing jQuery statements one at a time (one after the other).
+	However, there is a technique called Chaining, that allows us to run multiple jQuery
+
+		$("#p1").css("color", "red").slideUp(2000).slideDown(2000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+	GETTING FROM ELEMENTS
+
+		<script>
+		$(document).ready(function(){
+		  $("#btn1").click(function(){
+		    alert("Text: " + $("#test").text());
+		  });
+		  $("#btn2").click(function(){
+		    alert("HTML: " + $("#test").html());
+		  });
+		});
+		</script>
+		</head>
+		<body>
+
+		<p id="test">This is some <b>bold</b> text in a paragraph.</p>
+		<button id="btn1">Show Text</button>
+		<button id="btn2">Show HTML</button>
+
+
+
+
+
+
+	 get methods >>
+
+
+    text() - Sets or returns the text content of selected elements
+    html() - Sets or returns the content of selected elements (including HTML markup)
+    val() - Sets or returns the value of form fields
+
+	The jQuery attr() method is used to get attribute values.
+	like:  $("#w3s").attr("href")
+
+
+	set methods
+
+       $("p").text("hodsajj");
+	$("p").html("<span>hkhdshhls</span>");
+	$("p").val("values");
+
+ 	All of the three jQuery methods above: text(), html(), and val(), also come with a callback function. The callback function has two 		parameters: the index of the current element in the list of elements selected and the original (old) value. You then return the string 		you wish to use as the new value from the function.
+
+   	example :
+		<!DOCTYPE html>
+		<html>
+		<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+		<script>
+		$(document).ready(function(){
+		  $("#btn1").click(function(){
+		    $("#test1").text(function(i, origText){
+		      return "Old text: " + origText + " New text: Hello world! (index: " + i + ")"; 
+		    });
+		  });
+
+		  $("#btn2").click(function(){
+		    $("#test2").html(function(i, origText){
+		      return "Old html: " + origText + " New html: Hello <b>world!</b> (index: " + i + ")"; 
+		    });
+		  });
+		});
+		</script>
+		</head>
+		<body>
+
+		<p id="test1">This is a <b>bold</b> paragraph.</p>
+		<p id="test2">This is another <b>bold</b> paragraph.</p>
+
+		<button id="btn1">Show Old/New Text</button>
+		<button id="btn2">Show Old/New HTML</button>
+
+		</body>
+		</html>
+
+
+
+     attr allow you to apply more than one attributes in one go 
+	like this 
+	$("button").click(function(){
+	  $("#w3s").attr({
+	    "href" : "https://www.w3schools.com/jquery/",
+	    "title" : "W3Schools jQuery Tutorial"
+	  });
+	});
+	
+	The jQuery method attr(), also comes with a callback function. The callback function has two parameters: the index of the current 	element in the list of elements selected and the original (old) attribute value. You then return the string you wish to use as the new 		attribute value from the function.
+
+
+
+
+         add methods in jquery
+
+	    append() - Inserts content at the end of the selected elements     // append and prepend only add inside the element     
+	    prepend() - Inserts content at the beginning of the selected elements
+	    after() - Inserts content after the selected elements      // this add after the element
+	    before() - Inserts content before the selected elements
+
+
+	example
+	    $(document).ready(function(){
+		  $("#btn1").click(function(){
+		    $("p").prepend("<b>Prepended text</b>. ");
+		  });
+		  $("#btn2").click(function(){
+		    $("ol").prepend("<li>Prepended item</li>");
+		  });
+		});
+	you can add multiple text html  like this:---- $("body").append(txt1, txt2, txt3);  :
+
+
+	
+
+	Remove methods:
+
+	
+	    remove() - Removes the selected element (and its child elements)
+	    empty() - Removes the child elements from the selected element
+
+	This example removes all <p> elements with class="test" and class="demo":  
+	Example:
+		$("p").remove(".test, .demo"); 
+
+
+
+
+ jquery maniuplation css
+	addClass("classname secondClassName") ,
+	removeClass("classname secondClassName"),
+	toggleClass("classname secondClassName");
+
+ 	we have to give css in css file  and just give that class name inside this js ...and we can add multiple class inside the functions
+
+	$("button").click(function(){
+ 		 $("#div1").addClass("important blue");
+	});
+
+	$("button").click(function(){
+	  $("h1, h2, p").removeClass("blue");
+	});
+
+
+	the following example will show how to use the jQuery toggleClass() method. This method toggles between adding/removing classes from 		the selected elements:
+
+	$("button").click(function(){
+	  $("h1, h2, p").toggleClass("blue");
+	});
+
+
+
+	css("property") >> gives all or one property vlue
+	css("propertyname","value");   its sets the value
+	 css({"propertyname":"value","propertyname":"value",...});
+
+
+
+
+
+TRAVERSING in html document as tree from-----
+	 ancestors ->>parents ->> (self or sibling) ->> child  ->>> decendants
+
+	traversing up >>
+	
+	 element.parent()    >> give immediate parent only
+	 element.parents()    >> give array of all ancestors(great grand parents ,grand parents parent) element
+ 	element.parentsUntil("ancestors tag name like div ")    >> gives all ancestors until it find matched ancestors
+
+
+	traversing down >>
+ 
+	element.children()
+	the children() method returns all direct children of the selected element.his method only traverses a single level down the DOM tree.all childrens only single level down...
+
+	example : $("div").children("p.first"); it will filter all the 		children that has only p tagname which have first as a class 		name.
+
+
+	element.find()	
+The find() method returns descendant elements of the selected element, all the way down to the last descendant.
+	
+	 $("div").find("span");
+     The following example returns all <span> elements that are descendants of <div>:
+if you write * at place of span you will get all the desandant of div..
+
+
+ 
+TRAVERSING THOUGH SIDEWAYS >>>
+
+
+    $("div").siblings("P") 
+	> returns all the "p" sibling of div if nothing specified only 		() this then all siblings will be returned
+    next()   > returns next sibling (written after that element)
+    nextAll()  > retrns  all "NEXT" sibling 
+    nextUntil("tagname")  > retrns  all "NEXT" sibling until "tag" element is found
+    prev()  > below all are same as above all just gives previous element
+    prevAll()
+    prevUntil()
+
+
+
+TRAVERSING THROUGH FILTERING:-
+
+The most basic filtering methods are FIRST(), LAST() , EQ(), which allow you to select a specific element based on its position in a group of elements.
+
+
+
+the $("div ").eq(indexNumber in numer)   >> give elemnet at that position.
+
+filter() 
+>> The filter() method lets you specify a criteria. Elements that do not match the criteria are removed from the selection, and those that match will be returned.
+
+ $("p").filter(".intro");
+
+
+not() 
+>>The not() method returns all elements that do not match the criteria.
+Tip: The not() method is the opposite of filter().
+
+ $("p").not(".intro");
+
+
+
+
+
+
+
+
+
+AJAX  BASIC LOAD /GET /SET METHODS:-
+
+
+	AJAX = Asynchronous JavaScript and XML.
+
+	In short; AJAX is about loading data in the background and 	display it on the webpage, without reloading the whole page.
+
+
+	The jQuery load() method is a simple, but powerful AJAX method.
+	The load() method loads data from a server and puts the 	returned data into the selected element.
+
+
+	$(selector).load(URL,data,callback);
+
+	The required URL parameter specifies the URL you wish to load.
+
+	The optional data parameter specifies a set of querystring key/value pairs to send along with the request.
+
+	The optional callback parameter is the name of a function to be executed after the load() method is completed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+

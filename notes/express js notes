@@ -1,0 +1,268 @@
+
+
+				express js
+thunder Client is an extension used in vs which is as same as postman. 
+
+nodemon is just same as node but every time we save our server we need to enter again node index.js. but if use nodemon then we do not have to write nodemon agaian again it will automatically restart.
+WE MUST install nodemon as npm i -D nodemon   that means  it must be in devdependencies not in globally.
+
+
+
+
+
+
+server creation and path defining is very easy in express js as node js  you have to define multiple switch statement in node js.
+
+const express = require('express');
+const app = express();
+const port = 4000;
+
+
+app.get('/*',(req,res,next)=>{
+      res.send(req.params);
+})
+app.listen(port,(err)=>{
+    if(err) throw err ;
+    console.log( "server is runining ");
+
+})
+
+
+
+Node js 
+
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.write('Hello World!');
+  res.end();
+}).listen(8080); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.use() so basicllay this is a function(middelewar function) which have access to req ,res and next  ... and this function can change them
+
+
+
+app.use()     // it is just an functin or middelwar function it has access to req ,res objcet
+
+// lets create  a middelware   
+  const harrymidde = (req,res,next)=>{console.log("harry")}
+
+// and we calle it as
+ app.use(harrymidde);
+ 
+// and another thing you can use is express.static inside the app.use like 
+app.use(express.static(path.join(__dirname ,"public")))
+// this will open public folders indexe,html file\
+
+
+// if we have  make many  middelware then we write inside that next() so that next midelware gets run 
+// 
+
+
+
+
+
+
+now we will check how we can pass thing in req 
+
+1>Query
+
+// here queries are key value pairs
+http://example.com/api/users?id=4&token=sdfa3&geo=us
+
+
+
+This URL includes parameters for id, token, and geo (geolocation):
+
+id: 4
+token: sdfa3
+geo: us
+
+req.query.id  will give 4
+
+
+
+ 2 params
+
+// req.params can be used to retrieve values from routes.
+
+// Consider the following URL:
+
+// http://localhost:8080/api/1
+
+
+
+// app.get('/api/:version', function(req, res) {
+//     res.send(req.params.version);
+//   });
+
+// This URL includes routes for api and :version (1).
+
+// Revisit server.js with your code editor and add the following lines of code for req.params.version
+
+
+
+// 3  by app.param   only param
+
+// Next up, you are using the Express .param function to grab a specific parameter. This is considered middleware and will run before the route is called.
+
+// This can be used for validations (like checking if a user exists) or grabbing important information about that user or item.
+
+// http://localhost:8080/api/users/sammy
+
+// app.param('name', function(req, res, next, name) {     here we are using the param to change req
+//     const modified = name.toUpperCase();     
+//     req.name = modified;
+//     next();
+//   });
+  
+//   // routes will go here
+//   // ...
+  
+//   app.get('/api/users/:name', function(req, res) {
+//     res.send('Hello ' + req.name + '!');
+//   });
+  
+
+app.get('/things/:id([0-9]{5})', function(req, res){
+   res.send('id: ' + req.params.id);
+});
+
+
+
+// with req.body
+
+// express.json() and express.urlencoded() are built-in middleware functions to support JSON-encoded and URL-encoded bodies.
+
+// Open server.js with your code editor and add the following lines of code:
+// server.js
+
+// const express = require('express');
+
+// const app = express();
+// const port = process.env.PORT || 8080;
+
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
+
+
+// app.post('/api/users', function(req, res) {
+//     const user_id = req.body.id;
+//     const token = req.body.token;
+//     const geo = req.body.geo;
+  
+//     res.send({
+//       'user_id': user_id,
+//       'token': token,
+//       'geo': geo
+//     });
+//   });
+
+
+
+
+
+
+
+body parser is kind of middel ware too
+
+var bodyParser = require('body-parser');
+
+//To parse URL encoded data
+app.use(bodyParser.urlencoded({ extended: false }))
+
+//To parse json data
+app.use(bodyParser.json())
+
+
+
+cookie-parser
+
+It parses Cookie header and populate req.cookies with an object keyed by cookie names. To mount cookie parser, we need to install it using npm install --save cookie-parser and to mount it, include the following lines in your index.js −
+
+var cookieParser = require('cookie-parser');
+app.use(cookieParser())
+
+
+it is used to store cookies in system every time we make request it passed cookeis we can access them using req.cookies and set them as   
+
+
+
+app.get('/', function(req, res){
+res.cookie(name, 'value', {expire: 360000 + Date.now()}); 
+res.send('done');
+});
+
+app.listen(3000);
+
+
+
+console.log(document.cookie);
+ in browser we can get This on in frontend//
+
+for clearing cookies
+   res.clearCookie('foo');
+
+
+
+
+
+
+session
+
+Cookies and URL parameters are both suitable ways to transport data between the client and the server. But they are both readable and on the client side. Sessions solve exactly this problem. You assign the client an ID and it makes all further requests using that ID. 
+Information associated with the client is stored on the server linked to this ID.
+
+We will need the Express-session, so install it using the following code.
+
+npm install --save express-session
+
+
+
+var express = require('express');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
+var app = express();
+
+app.use(cookieParser());
+app.use(session({secret: "Shh, its a secret!"}));
+
+app.get('/', function(req, res){
+   if(req.session.page_views){
+      req.session.page_views++;
+      res.send("You visited this page " + req.session.page_views + " times");
+   } else {
+      req.session.page_views = 1;
+      res.send("Welcome to this page for the first time!");
+   }
+});
+app.listen(3000);
+
+
+
+What the above code does is, when a user visit the site, it creates a new session for the user and assigns them a cookie. Next time the user comes, the cookie is checked and the page_view session variable is updated accordingly.
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,134 @@
+Node js tutorial  by thapa techniacal
+
+node js is a javascript runtime built on chrome v8 js engine. it is a nonblocking application single threaded..
+it is not a framework not a liabrary it is just a runtime 
+
+
+until we are working on js code it is a editor and when we run that code it is a runtime envoironment.
+
+when to use nodejs >>
+
+I/O bound :- means it will be no bloacking kind of work required.
+
+data streaming applications:-  it will show all data jaise jaise apan niche jaenge feed aat hi jaega .. like instagrame
+
+
+real time chat application
+
+when not to use nodejs >>
+	 where cpu intensive work is required  we don't use node js  
+
+	nodejs has another data type called buffer which read bytes 		data
+
+
+download node js for your pc >>
+
+
+
+
+
+
+cmd uses >> for installing linux use command "sudo apt install nodejs"
+
+ 
+
+so first code u have to make index.js file in your files to create nodejs server file ..
+
+ and console.log will here only run in the terminal only and not (it wont show on browser).
+
+
+and to run your files you need to do node filename.js
+ in terminal
+
+
+
+
+REPL in node js:-
+it is an feature of node ans it is very useful in experimenting with nodekjs codes and to debug javascript codes 
+
+
+READ:-  reads user input ,parses the input into js datastructure and store in memory
+EVAL :- takes and evaluates the data structure
+PRINT :- prints the result 
+LOOP :- loops the above commanduntil the user presses  ctrl-c twice
+
+
+
+
+REPL is basically cmd(like in windows ) of node js 
+to use repl in terminal of vscode just write node in terminal and repl will be on ..  and to come out from that typr ".exit"
+
+
+and to create folder from terminal just type "type null > index.js"
+
+
+
+
+what we can do in repl
+>>
+  js expression 9+5 ; 5+(5&5) + 6 :
+  use variables 
+  multiline code like  do while loops 
+  use  (_) to get the last result if u just write _ then it will give last result ;
+  .editor>>	entering editor mode (^D to finish ,^C to cancel).
+
+  
+
+
+It will be in node terminal only
+  :-
+in repl if you want to find all systems in node just tab two times 
+and to  find  methods in each system and type its name and tab
+
+
+
+
+
+Node js core modules >>
+  modules are just as same as js liabraries .
+  Node.js has a set of built in which you can use without any further installation.
+
+
+
+
+file system :--
+
+const fs = require('fs');
+
+fs.writeFile('filename.extension',  data to save , options) 
+ // this will  create(if there is no same file ) above file and add data in that (if same ile exsited then just update whole data)
+
+fs.writeFileSync('filename.extension',  data to save , options) 
+// this will do same work but only synchrnously.
+
+
+fs.appendFileSync('filename.extension',  data to save , options) 
+ //    just add data 
+
+
+
+
+fs.readFileSync('filename.extension', options) 
+// it will give you buffered data type on read  so convert that in the string using toString().   
+
+
+
+
+
+TO RENAME THE FILE :
+
+fs.renameSync("original_name.extension","new_name.extension");
+  //  it will rename file synchronously
+
+
+
+
+
+
+
+
+
+
+
+
+
